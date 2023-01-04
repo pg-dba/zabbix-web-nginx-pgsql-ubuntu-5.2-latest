@@ -11,8 +11,8 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
   apt-get clean all && \
   unset DEBIAN_FRONTEND
 
+RUN mkdir /var/lib/zabbix && chown zabbix:zabbix /var/lib/zabbix
+
 USER zabbix
 
-#RUN echo 'alias nocomments="sed -e :a -re '"'"'s/<\!--.*?-->//g;/<\!--/N;//ba'"'"' | sed -e :a -re '"'"'s/\/\*.*?\*\///g;/\/\*/N;//ba'"'"' | grep -v -P '"'"'^\s*(#|;|--|//|$)'"'"'"' >> ~/.bashrc
-
-#WORKDIR /etc/zabbix
+RUN echo 'alias nocomments="sed -e :a -re '"'"'s/<\!--.*?-->//g;/<\!--/N;//ba'"'"' | sed -e :a -re '"'"'s/\/\*.*?\*\///g;/\/\*/N;//ba'"'"' | grep -v -P '"'"'^\s*(#|;|--|//|$)'"'"'"' >> ~/.bashrc
